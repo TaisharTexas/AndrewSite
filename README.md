@@ -1,6 +1,8 @@
 # mysite
 
-A new Flutter project.
+To update live site:
+1) flutter build web
+2) firebase deploy
 
 ## Getting Started
 
