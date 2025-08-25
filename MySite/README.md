@@ -1,5 +1,6 @@
 # mysite
 [using this tutorial](https://youtu.be/UOTwRXAh6VY?si=RxkiuWWbZCAfV3Wp)
+taishar.net
 
 ## Working Commands
 To update live site:
