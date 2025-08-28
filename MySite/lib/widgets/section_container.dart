@@ -9,16 +9,19 @@ class SectionContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-      child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(title, style: Theme.of(context).textTheme.headlineMedium),
-            const SizedBox(height: 12),
-            Text(content, style: Theme.of(context).textTheme.bodyLarge),
-          ],
+      margin: const EdgeInsets.symmetric(vertical: 12),
+      child: SizedBox(
+        width: double.infinity,
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(title, style: Theme.of(context).textTheme.headlineMedium),
+              const SizedBox(height: 12),
+              Text(content, style: Theme.of(context).textTheme.bodyLarge),
+            ],
+          ),
         ),
       ),
     );
