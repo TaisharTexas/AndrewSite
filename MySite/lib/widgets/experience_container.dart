@@ -9,6 +9,9 @@ class ExperienceContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
+
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 12),
       child: SizedBox(
@@ -19,13 +22,13 @@ class ExperienceContainer extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Title
-              Text(title, style: Theme.of(context).textTheme.headlineMedium),
+              Text(title, style: textTheme.headlineMedium?.copyWith(color: colors.primary,),),
               const SizedBox(height: 4),
               // Date
-              Text(date, style: TextStyle(fontSize: 14, color: Colors.grey[600],),),
+              Text(date, style: textTheme.bodyMedium?.copyWith(color: colors.secondary,),),
               const SizedBox(height: 8),
               // Content
-              Text(content, style: Theme.of(context).textTheme.bodyLarge),
+              Text(content, style: textTheme.bodyLarge?.copyWith(color: colors.onSurface,),),
             ],
           ),
         ),
