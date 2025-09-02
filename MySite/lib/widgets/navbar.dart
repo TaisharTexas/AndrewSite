@@ -50,10 +50,10 @@ class Navbar extends StatelessWidget {
                 height: 100,
                 color: Colors.black,
                 alignment: Alignment.centerLeft,
-                padding: const EdgeInsets.only(left: 20),
-                child: const Text(
+                padding: const EdgeInsets.only(left: 40),
+                child: Text(
                   "Andrew Lee",
-                  style: TextStyle(color: Colors.white),
+                  style: AppColors.headerBlock.copyWith(color: Colors.white),
                 ),
               ),
             ),

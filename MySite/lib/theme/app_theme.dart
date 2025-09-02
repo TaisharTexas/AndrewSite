@@ -21,6 +21,13 @@ class AppColors {
   static const Color error = Color(0xFFDC2626);       // Red
   static const Color warning = Color(0xFFF59E0B);     // Orange
   static const Color success = Color(0xFF10B981);     // Green
+
+  static const TextStyle headerBlock = TextStyle(
+    color: textPrimaryDark,
+    fontWeight: FontWeight.bold,
+    fontSize: 28,
+    fontFamily: 'Antonio',
+  );
 }
 
 class AppTheme {
@@ -44,6 +51,12 @@ class AppTheme {
         headlineMedium: TextStyle(color: AppColors.textPrimaryDark),
         bodyLarge: TextStyle(color: AppColors.textSecondary),
         bodyMedium: TextStyle(color: AppColors.textSecondary),
+        // headerBlcok: TextStyle(
+        //   color: AppColors.textPrimaryDark,
+        //   fontWeight: FontWeight.bold,
+        //   fontSize: 32,
+        //   fontFamily: 'Antonio', // Replace with your font name
+        // ),
       ),
       appBarTheme: const AppBarTheme(
         backgroundColor: Colors.transparent,

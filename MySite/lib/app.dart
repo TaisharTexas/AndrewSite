@@ -61,6 +61,7 @@ class MainScaffold extends StatelessWidget {
     if (isMobile) {
       // Mobile: footer flows with content
       return Scaffold(
+        extendBodyBehindAppBar: true,
         backgroundColor: Colors.transparent,
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(60),
@@ -73,19 +74,10 @@ class MainScaffold extends StatelessWidget {
             },
           ),
         ),
-        body: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                AppColors.background,
-                AppColors.surface.withOpacity(0.3),
-              ],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-            ),
-          ),
-          child: Column(
+        body: gradientWrapper(
+          Column(
             children: [
+              SizedBox(height: 40),
               Expanded(child: child), // main content
               const Footer(),         // footer at bottom of scrollable content
             ],
@@ -105,7 +97,7 @@ class MainScaffold extends StatelessWidget {
                 DrawerHeader(
                   decoration: BoxDecoration(color: Theme.of(context).colorScheme.primary),
                   child: Text(
-                    'Andrew Lee',
+                    'Check out me and my site!',
                     style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                       color: Theme.of(context).colorScheme.onPrimary,
                     ),
