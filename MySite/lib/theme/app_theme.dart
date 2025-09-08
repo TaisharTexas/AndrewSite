@@ -28,12 +28,33 @@ class AppColors {
     fontSize: 28,
     fontFamily: 'Antonio',
   );
+
+  static const TextStyle normHeadline = TextStyle(
+    color: Colors.white,
+    fontWeight: FontWeight.bold,
+    fontSize: 40,
+    // fontFamily: 'Antonio',
+  );
+
+  static const TextStyle normHeadline2 = TextStyle(
+    color: Color(0xFFB2B0E8),
+    fontWeight: FontWeight.bold,
+    fontSize: 30,
+    // fontFamily: 'Antonio',
+  );
+
+  static const TextStyle bodyLargeLight = TextStyle(
+    color: Colors.white,
+    fontWeight: FontWeight.normal,
+    fontSize: 22,
+  );
 }
 
 class AppTheme {
   static ThemeData get lightTheme {
     return ThemeData(
       scaffoldBackgroundColor: Colors.white,
+      fontFamily: 'Garamond',
       colorScheme: ColorScheme.light(
         primary: AppColors.primary,
         secondary: AppColors.secondary,
@@ -51,12 +72,6 @@ class AppTheme {
         headlineMedium: TextStyle(color: AppColors.textPrimaryDark),
         bodyLarge: TextStyle(color: AppColors.textSecondary),
         bodyMedium: TextStyle(color: AppColors.textSecondary),
-        // headerBlcok: TextStyle(
-        //   color: AppColors.textPrimaryDark,
-        //   fontWeight: FontWeight.bold,
-        //   fontSize: 32,
-        //   fontFamily: 'Antonio', // Replace with your font name
-        // ),
       ),
       appBarTheme: const AppBarTheme(
         backgroundColor: Colors.transparent,

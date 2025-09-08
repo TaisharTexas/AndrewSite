@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import '../responsive_layout.dart';
 import '../widgets/section_container.dart';
+import '../theme/app_theme.dart';
+
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+
+    final colors = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
+
     return ResponsiveLayout(
       mobile: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
@@ -53,11 +59,25 @@ class HomePage extends StatelessWidget {
                         right: 0,
                         top: 0,
                         child: Container(
-                          width: constraints.maxWidth * 0.6,
-                          child: const SectionContainer(
-                            title: "Hi, I'm Andrew",
-                            content:
-                            "Bright, motivated, responsible college student with strong experience developing and deploying software in a collaborative environment, designing with CAD tools, and integrating on FIRST robotic platforms. Taught introduction to Java classes and tutored algebra. Excellent academic, civics, and community service record. Team member and mentor for several FIRST Robotics teams. Currently studying Computer Science at University of Houston (set to graduate Fall â€™25).Will provide solutions and finish projects in a professional and urgent manner.",
+                          width: constraints.maxWidth * 0.55,
+                          height: stackHeight,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text("I'm Andrew.",
+                                style: AppColors.normHeadline,
+                              ),
+                              const SizedBox(height: 20),
+                              Text("This is my portfolio",
+                                style: AppColors.normHeadline2,
+                              ),
+                              const SizedBox(height: 20),
+                              Text("Let me show you what I bring to your team",
+                                style: AppColors.bodyLargeLight,
+
+                              ),
+                            ],
                           ),
                         ),
                       ),

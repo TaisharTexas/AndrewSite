@@ -23,7 +23,7 @@ class Footer extends StatelessWidget {
             "© ${DateTime.now().year} Andrew Lee",
             style: TextStyle(
               color: Colors.white,
-              fontSize: isMobile ? 12 : 14, // slightly smaller on mobile
+              fontSize: isMobile ? 8 : 10, // slightly smaller on mobile
             ),
           ),
           // const SizedBox(height: 2), // spacing between lines
