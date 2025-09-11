@@ -1,12 +1,30 @@
 import 'package:flutter/material.dart';
 import '../responsive_layout.dart';
 import '../theme/app_theme.dart';
+import 'package:mysite/helpers/navigation_helper.dart';
 
 class Navbar extends StatelessWidget {
   final Function(String) onNavTap;
   final String currentPage;
 
   const Navbar({super.key, required this.onNavTap, required this.currentPage});
+
+  void _handleNavigation(String label, String route, BuildContext context) {
+    switch (label) {
+      case "Home":
+        NavigationHelper.handleHomeNavigation(context);
+        break;
+      case "About Me":
+        NavigationHelper.handleAboutNavigation(context);
+        break;
+      case "Experience":
+        NavigationHelper.handleExperienceNavigation(context);
+        break;
+      default:
+        onNavTap(route);
+        break;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +34,6 @@ class Navbar extends StatelessWidget {
       "Home": "/",
       "About Me": "/about",
       "Experience": "/experience",
-      // "Resume": "/resume",
       "Contact": "/contact",
     };
 
@@ -70,7 +87,7 @@ class Navbar extends StatelessWidget {
                       label: entry.key,
                       route: entry.value,
                       isActive: currentPage == entry.value,
-                      onTap: () => onNavTap(entry.value),
+                      onTap: () => _handleNavigation(entry.key, entry.value, context),
                     ),
                   ).toList(),
                 ),
@@ -78,15 +95,6 @@ class Navbar extends StatelessWidget {
             ),
           ],
         ),
-        // title: const Text("Andrew Lee"),
-        // actions: pageRoutes.entries.map(
-        //       (entry) => _NavButton(
-        //     label: entry.key,
-        //     route: entry.value,
-        //     isActive: currentPage == entry.value,
-        //     onTap: () => onNavTap(entry.value),
-        //   ),
-        // ).toList(),
       );
     }
   }
@@ -121,7 +129,7 @@ class _NavButtonState extends State<_NavButton> {
         height: double.infinity,
         margin: const EdgeInsets.symmetric(horizontal: 4),
         decoration: BoxDecoration(
-          color: (widget.isActive)
+          color: (isHovered)
               ? AppColors.onHoverBackground // Purple background on active/hover
               : Colors.transparent,
         ),
@@ -132,13 +140,12 @@ class _NavButtonState extends State<_NavButton> {
             foregroundColor: Colors.transparent, // Override default text color
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             minimumSize: const Size(0, double.infinity),
-            // splashFactory: NoSplash.splashFactory,
             overlayColor: Colors.transparent,
           ),
           child: Text(
             widget.label,
             style: TextStyle(
-              color: (widget.isActive || isHovered)
+              color: (isHovered)
                   ? Colors.white // White text on active/hover
                   : Colors.grey, // Grey text by default
             ),

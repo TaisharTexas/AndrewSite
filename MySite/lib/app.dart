@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'widgets/navbar.dart';
 import 'widgets/footer.dart';
-import 'pages/home_page.dart';
+import 'pages/home_page_orig.dart';
 import 'pages/about_page.dart';
 import 'pages/portfolio_page.dart';
 import 'pages/contact_page.dart';
 import 'pages/page_in_progress.dart';
 import '../responsive_layout.dart';
 import 'theme/app_theme.dart';
+import '../helpers/navigation_helper.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -83,12 +84,6 @@ class MainScaffold extends StatelessWidget {
             ],
           ),
         ),
-        // body: Column(
-        //   children: [
-        //     Expanded(child: child), // main content
-        //     const Footer(),         // footer at bottom of scrollable content
-        //   ],
-        // ),
         drawer: Drawer(
           child: SafeArea(
             child: ListView(
@@ -155,31 +150,6 @@ class MainScaffold extends StatelessWidget {
         ),
       );
     }
-    // else {
-    //   return Scaffold(
-    //     backgroundColor: Colors.transparent,
-    //     appBar: PreferredSize(
-    //       preferredSize: const Size.fromHeight(100),
-    //       child: Navbar(
-    //         currentPage: currentPage,
-    //         onNavTap: (route) {
-    //           if (route != currentPage) {
-    //             Navigator.pushNamedAndRemoveUntil(context, route, (r) => false);
-    //           }
-    //         },
-    //       ),
-    //     ),
-    //     body: gradientWrapper(
-    //       Column(
-    //         children: [
-    //           Expanded(child: child), // main content
-    //         ],
-    //       ),
-    //     ),
-    //     // body: child,
-    //     bottomNavigationBar: const Footer(),
-    //   );
-    // }
   }
 }
 
@@ -211,7 +181,15 @@ class _DrawerTile extends StatelessWidget {
       ),
       onTap: () {
         Navigator.pop(context); // close drawer
-        if (route != currentPage) {
+
+        // Handle special navigation for Home and About
+        if (title == 'Home') {
+          NavigationHelper.handleHomeNavigation(context);
+        } else if (title == 'About') {
+          NavigationHelper.handleAboutNavigation(context);
+        } else if (title == 'Experience'){
+          NavigationHelper.handleExperienceNavigation(context);
+        } else if (route != currentPage) {
           Navigator.pushNamedAndRemoveUntil(context, route, (r) => false);
         }
       },

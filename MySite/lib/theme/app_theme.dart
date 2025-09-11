@@ -32,21 +32,21 @@ class AppColors {
   static const TextStyle normHeadline = TextStyle(
     color: Colors.white,
     fontWeight: FontWeight.bold,
-    fontSize: 40,
+    fontSize: 70,
     // fontFamily: 'Antonio',
   );
 
   static const TextStyle normHeadline2 = TextStyle(
     color: Color(0xFFB2B0E8),
     fontWeight: FontWeight.bold,
-    fontSize: 30,
+    fontSize: 55,
     // fontFamily: 'Antonio',
   );
 
   static const TextStyle bodyLargeLight = TextStyle(
     color: Colors.white,
     fontWeight: FontWeight.normal,
-    fontSize: 22,
+    fontSize: 45,
   );
 }
 
