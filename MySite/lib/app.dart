@@ -123,7 +123,7 @@ class MainScaffold extends StatelessWidget {
                 child: Column(
                   children: [
                     Expanded(child: child),
-                    const Footer(),
+                    // const Footer(),
                   ],
                 ),
               ),

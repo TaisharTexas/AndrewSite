@@ -191,9 +191,16 @@ class HomePage extends StatelessWidget {
                         style: AppColors.normHeadline2,
                       ),
                       const SizedBox(height: 24),
+                      // Divider
+                      Container(
+                        height: 2,
+                        width: 60,
+                        color: colors.primary.withOpacity(0.3),
+                      ),
+                      const SizedBox(height: 32),
                       Text(
-                        "Passionate about creating innovative solutions",
-                        style: AppColors.bodyLargeLight,
+                        "My interest in tech and computer science has been a constant since my childhood. I first discovered how endlessly fascinating technology was when I joined a FIRST robotics team in Junior High. FIRST robotics became the focus of my life until college and was the reason I decided to pursue computer science as my major. From the start, I gravitated towards the programming side of things and made it my speciality. With my dad as my mentor and teacher I learned my first language (Java) and year by year progressively pushed into more and more advanced programing techniques as my team and I chased ways to get just one more leg up on our competition. By the time I headed to college I had developed a home-grown dynamic and modularly programmable vector-pursuit autonomous navigation system for our robot. The vector pursuit algorithm let the robot decide for itself the best way to reach its destination on the field and the modularity of how I programmed in the paths let me adapt what the robot did on the fly between matches at competitions. I found incredible fulfilment in leading my team's software efforts while also collaborating on the mechanical and electrical sides of the robot. This hybrid of worlds is where I felt truly at home, programming for a robot I had helped build from the ground up.",
+                        style: AppColors.bodyNormLight,
                       ),
                       const SizedBox(height: 32),
                       // Divider
@@ -203,18 +210,18 @@ class HomePage extends StatelessWidget {
                         color: colors.primary.withOpacity(0.3),
                       ),
                       const SizedBox(height: 32),
-                      // Extended about content
                       Text(
-                        "A blurb about me",
-                        style: AppColors.bodyLargeLight,
+                        "In college I learned that for all my focus on one application of computer science there were so so many other avenues to discover. I jumped headfirst into website and multiplatform app development with HTML, Javascript, Flutter, Swift, and more; I learned how to build SQL databases and integrate them to provide the information backbone that so much of our digital world could not function without; and throughout it all discovering the power of AI and the foundational keystones to the image and text generators that in my freshman year was unheard of and now as I graduate is almost synonymous with using the internet itself.",
+                        style: AppColors.bodyNormLight,
                       ),
+                      const SizedBox(height: 32),
                     ],
                   ),
                 ),
 
                 const SizedBox(height: 48),
 
-                //Experience Page
+                //EXPERIENCE SECTION
                 Container(
                   key: experienceSectionKey,
                   width: double.infinity,
@@ -239,17 +246,6 @@ class HomePage extends StatelessWidget {
                               style: AppColors.normHeadline2,
                             ),
                             const SizedBox(height: 24),
-                            Text(
-                              "Building solutions that make a difference",
-                              style: AppColors.bodyLargeLight,
-                            ),
-                            const SizedBox(height: 32),
-                            // Divider
-                            Container(
-                              height: 2,
-                              width: 60,
-                              color: colors.primary.withOpacity(0.3),
-                            ),
                           ],
                         ),
                       ),
@@ -267,14 +263,14 @@ class HomePage extends StatelessWidget {
                               children: [
                                 Container(
                                   padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                                  child: Text(
-                                    "EXPERIENCE",
-                                    style: textTheme.headlineSmall?.copyWith(
-                                      color: colors.primary,
-                                      fontWeight: FontWeight.bold,
-                                      letterSpacing: 1.2,
-                                    ),
-                                  ),
+                                  // child: Text(
+                                  //   "EXPERIENCE",
+                                  //   style: textTheme.headlineSmall?.copyWith(
+                                  //     color: colors.primary,
+                                  //     fontWeight: FontWeight.bold,
+                                  //     letterSpacing: 1.2,
+                                  //   ),
+                                  // ),
                                 ),
                                 const ExperienceContainer(
                                   title: "Chevron Internship",
@@ -313,14 +309,14 @@ class HomePage extends StatelessWidget {
                               children: [
                                 Container(
                                   padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                                  child: Text(
-                                    "PROJECTS",
-                                    style: textTheme.headlineSmall?.copyWith(
-                                      color: colors.primary,
-                                      fontWeight: FontWeight.bold,
-                                      letterSpacing: 1.2,
-                                    ),
-                                  ),
+                                  // child: Text(
+                                  //   "PROJECTS",
+                                  //   style: textTheme.headlineSmall?.copyWith(
+                                  //     color: colors.primary,
+                                  //     fontWeight: FontWeight.bold,
+                                  //     letterSpacing: 1.2,
+                                  //   ),
+                                  // ),
                                 ),
                                 const SectionContainer(
                                   title: "Portfolio Website",

@@ -48,6 +48,12 @@ class AppColors {
     fontWeight: FontWeight.normal,
     fontSize: 45,
   );
+
+  static const TextStyle bodyNormLight = TextStyle(
+    color: Colors.white,
+    fontWeight: FontWeight.normal,
+    fontSize: 25,
+  );
 }
 
 class AppTheme {
