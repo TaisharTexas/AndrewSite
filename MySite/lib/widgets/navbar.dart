@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../responsive_layout.dart';
-import '../theme/app_theme.dart';
-import 'package:mysite/helpers/navigation_helper.dart';
+import 'package:mysite/responsive_layout.dart';
+import 'package:mysite/theme/app_theme.dart';
+import 'package:mysite/pages/home_page.dart';
 
 class Navbar extends StatelessWidget {
   final Function(String) onNavTap;
@@ -10,38 +10,55 @@ class Navbar extends StatelessWidget {
   const Navbar({super.key, required this.onNavTap, required this.currentPage});
 
   void _handleNavigation(String label, String route, BuildContext context) {
+    if (route == "/") {
+      // Navigate home first if not already there
+      final currentRoute = ModalRoute.of(context)?.settings.name;
+      if (currentRoute != "/") {
+        Navigator.pushNamedAndRemoveUntil(context, "/", (r) => false).then((_) {
+          Future.delayed(const Duration(milliseconds: 100), () {
+            _scrollToSection(label);
+          });
+        });
+      } else {
+        _scrollToSection(label);
+      }
+    } else {
+      Navigator.pushNamed(context, route);
+    }
+  }
+
+  void _scrollToSection(String label) {
     switch (label) {
       case "Home":
-        NavigationHelper.handleHomeNavigation(context);
+        HomePage.scrollToHomeSection();
         break;
       case "About Me":
-        NavigationHelper.handleAboutNavigation(context);
+        HomePage.scrollToAboutSection();
         break;
       case "Experience":
-        NavigationHelper.handleExperienceNavigation(context);
+        HomePage.scrollToExperienceSection();
         break;
-      default:
-        onNavTap(route);
-        break;
+      case "Contact":
+        HomePage.scrollToContactSection();
     }
   }
 
   @override
   Widget build(BuildContext context) {
     final isMobile = ResponsiveLayout.isMobile(context);
+    final textTheme = Theme.of(context).textTheme;
 
     final pageRoutes = {
       "Home": "/",
-      "About Me": "/about",
-      "Experience": "/experience",
-      "Contact": "/contact",
+      "About Me": "/",
+      "Experience": "/",
+      "Contact": "/",
     };
 
     if (isMobile) {
       // Mobile: show a hamburger menu
       return AppBar(
         title: const Text("Andrew Lee"),
-        actions: [],
         leading: Builder(
           builder: (context) => IconButton(
             icon: const Icon(Icons.menu),
@@ -68,10 +85,7 @@ class Navbar extends StatelessWidget {
                 color: Colors.black,
                 alignment: Alignment.centerLeft,
                 padding: const EdgeInsets.only(left: 40),
-                child: Text(
-                  "Andrew Lee",
-                  style: AppColors.headerBlock.copyWith(color: Colors.white),
-                ),
+                child: Text("Andrew Lee", style: textTheme.headlineLarge),
               ),
             ),
             // Right two thirds - transparent background with nav links
@@ -129,15 +143,13 @@ class _NavButtonState extends State<_NavButton> {
         height: double.infinity,
         margin: const EdgeInsets.symmetric(horizontal: 4),
         decoration: BoxDecoration(
-          color: (isHovered)
-              ? AppColors.onHoverBackground // Purple background on active/hover
-              : Colors.transparent,
+          color: isHovered ? AppColors.onHoverBackground : Colors.transparent,
         ),
         child: TextButton(
           onPressed: widget.onTap,
           style: TextButton.styleFrom(
-            backgroundColor: Colors.transparent, // Override default button background
-            foregroundColor: Colors.transparent, // Override default text color
+            backgroundColor: Colors.transparent,
+            foregroundColor: Colors.transparent,
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             minimumSize: const Size(0, double.infinity),
             overlayColor: Colors.transparent,
@@ -145,9 +157,7 @@ class _NavButtonState extends State<_NavButton> {
           child: Text(
             widget.label,
             style: TextStyle(
-              color: (isHovered)
-                  ? Colors.white // White text on active/hover
-                  : Colors.grey, // Grey text by default
+              color: isHovered ? Colors.white : Colors.grey,
             ),
           ),
         ),

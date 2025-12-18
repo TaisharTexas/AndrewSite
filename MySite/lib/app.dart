@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'widgets/navbar.dart';
 import 'widgets/footer.dart';
-import 'pages/home_page_orig.dart';
-import 'pages/about_page.dart';
-import 'pages/portfolio_page.dart';
-import 'pages/contact_page.dart';
+import 'pages/home_page.dart';
 import 'pages/page_in_progress.dart';
+import 'pages/sdp_showcase_page.dart';
+import 'pages/ftc_decode_scoring_showcase.dart';
+import 'pages/exam_checkin_showcase.dart';
 import '../responsive_layout.dart';
 import 'theme/app_theme.dart';
-import '../helpers/navigation_helper.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -16,16 +15,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'My Portfolio',
-      theme: AppTheme.lightTheme,
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const MainScaffold(child: HomePage()),
-        '/about': (context) => const MainScaffold(child: AboutPage()),
-        '/experience': (context) => const MainScaffold(child: PortfolioPage()),
-        '/contact': (context) => const MainScaffold(child: ContactPage()),
-        '/page-in-progress': (context) => const MainScaffold(child: PageInProgressScreen()),
-      },
+        title: 'My Portfolio',
+        theme: AppTheme.lightTheme,
+        initialRoute: '/',
+        routes: {
+          '/': (context) => const MainScaffold(child: HomePage()),
+          '/page-in-progress': (context) => const MainScaffold(child: PageInProgressScreen()),
+          '/exam-checkin-showcase': (context) => const MainScaffold(child: ExamCheckinShowcase()),
+          '/ftc-decode-scoring-showcase': (context) => const MainScaffold(child: FtcDecodeScoringShowcase()),
+        }
     );
   }
 }
@@ -98,11 +96,30 @@ class MainScaffold extends StatelessWidget {
                     ),
                   ),
                 ),
-                _DrawerTile(title: 'Home', route: '/', context: context, currentPage: currentPage),
-                _DrawerTile(title: 'About', route: '/about', context: context, currentPage: currentPage),
-                _DrawerTile(title: 'Experience', route: '/experience', context: context, currentPage: currentPage),
-                // _DrawerTile(title: 'Resume', route: '/resume', context: context, currentPage: currentPage),
-                _DrawerTile(title: 'Contact', route: '/contact', context: context, currentPage: currentPage),
+                _DrawerTile(
+                  title: 'Home',
+                  route: '/',
+                  context: context,
+                  currentPage: currentPage,
+                ),
+                _DrawerTile(
+                  title: 'About',
+                  route: '/',
+                  context: context,
+                  currentPage: currentPage,
+                ),
+                _DrawerTile(
+                  title: 'Experience',
+                  route: '/',
+                  context: context,
+                  currentPage: currentPage,
+                ),
+                _DrawerTile(
+                  title: 'Contact',
+                  route: '/',
+                  context: context,
+                  currentPage: currentPage,
+                ),
               ],
             ),
           ),
@@ -119,7 +136,7 @@ class MainScaffold extends StatelessWidget {
             // Gradient page content with footer
             gradientWrapper(
               Padding(
-                padding: const EdgeInsets.only(top: 50), // padding for navbar height
+                padding: const EdgeInsets.only(top: 56), // padding for navbar height
                 child: Column(
                   children: [
                     Expanded(child: child),
@@ -182,17 +199,39 @@ class _DrawerTile extends StatelessWidget {
       onTap: () {
         Navigator.pop(context); // close drawer
 
-        // Handle special navigation for Home and About
-        if (title == 'Home') {
-          NavigationHelper.handleHomeNavigation(context);
-        } else if (title == 'About') {
-          NavigationHelper.handleAboutNavigation(context);
-        } else if (title == 'Experience'){
-          NavigationHelper.handleExperienceNavigation(context);
+        if (route == '/') {
+          // Navigate home first if not already there
+          final currentRoute = ModalRoute.of(context)?.settings.name;
+          if (currentRoute != '/') {
+            Navigator.pushNamedAndRemoveUntil(context, '/', (r) => false).then((_) {
+              Future.delayed(const Duration(milliseconds: 100), () {
+                _scrollToSection(title);
+              });
+            });
+          } else {
+            _scrollToSection(title);
+          }
         } else if (route != currentPage) {
           Navigator.pushNamedAndRemoveUntil(context, route, (r) => false);
         }
       },
     );
   }
-}
+
+  void _scrollToSection(String label) {
+    switch (label) {
+      case 'Home':
+        HomePage.scrollToHomeSection();
+        break;
+      case 'About':
+        HomePage.scrollToAboutSection();
+        break;
+      case 'Experience':
+        HomePage.scrollToExperienceSection();
+        break;
+      case 'Contact':
+        HomePage.scrollToContactSection();
+        break;
+    }
+  }
+} //: end scroll to section func

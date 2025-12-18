@@ -6,9 +6,9 @@ taishar.net
 To update live site:
 1) flutter build web
 2) firebase deploy
-   may need to user "flutter clean" before building
+   (may need to user "flutter clean" before building
    if firebase isnt initialized may need to do that*
-   check logged in with "firebase login"
+   check logged in with "firebase login")
 
 To run localhost in chrome:
 1) flutter run  -d chrome

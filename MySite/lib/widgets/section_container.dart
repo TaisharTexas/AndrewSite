@@ -1,57 +1,52 @@
 import 'package:flutter/material.dart';
+import '../theme/app_theme.dart';
 
 class SectionContainer extends StatelessWidget {
   final String title;
   final String content;
+  final String? subHeader;
   final String? seeMoreLink;
   final String? seeMoreDescrip;
 
-  const SectionContainer({super.key, required this.title, required this.content, this.seeMoreLink, this.seeMoreDescrip});
+  const SectionContainer({
+    super.key,
+    required this.title,
+    required this.content,
+    this.subHeader,
+    this.seeMoreLink,
+    this.seeMoreDescrip
+  });
 
   @override
   Widget build(BuildContext context) {
-    final colors = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
 
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 12),
-      child: SizedBox(
-        width: double.infinity,
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                title,
-                style: textTheme.headlineMedium?.copyWith(
-                  color: colors.primary, // use primary for emphasis
-                ),
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(title, style: ContainerTextStyles.header),
+            const SizedBox(height: 4),
+
+            if (subHeader != null) Text(subHeader!, style: ContainerTextStyles.subHeader),
+
+
+            const SizedBox(height: 8),
+            Text(content, style: ContainerTextStyles.body),
+
+            if (seeMoreLink != null && seeMoreDescrip != null) ...[
+              const SizedBox(height: 16),
+              InkWell(
+                onTap: () {
+                  Navigator.pushNamed(context, seeMoreLink!);
+                },
+                child: Text(seeMoreDescrip!, style: ContainerTextStyles.link.copyWith(decoration: TextDecoration.underline)),
               ),
-              const SizedBox(height: 12),
-              Text(
-                content,
-                style: textTheme.bodyLarge?.copyWith(
-                  color: colors.onSurface, // ensures contrast against surface
-                ),
-              ),
-              if (seeMoreLink != null && seeMoreDescrip != null) ...[
-                const SizedBox(height: 16),
-                InkWell(
-                  onTap: () {
-                    Navigator.pushNamed(context, seeMoreLink!);
-                  },
-                  child: Text(
-                    seeMoreDescrip!,
-                    style: textTheme.bodyMedium?.copyWith(
-                      color: colors.secondary,
-                      decoration: TextDecoration.underline,
-                    ),
-                  ),
-                ),
-              ],
             ],
-          ),
+          ],
         ),
       ),
     );
