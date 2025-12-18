@@ -15,6 +15,7 @@ class ShowcasePage extends StatefulWidget {
   final List<String> galleryImages;
   final String? pdfPath;
   final String? githubUrl;
+  final String? videoDetail;
 
   const ShowcasePage({
     super.key,
@@ -25,6 +26,7 @@ class ShowcasePage extends StatefulWidget {
     required this.galleryImages,
     this.pdfPath,
     this.githubUrl,
+    this.videoDetail,
   });
 
   @override
@@ -142,7 +144,17 @@ class _ShowcasePageState extends State<ShowcasePage> {
                 "Video Demo",
                 style: textTheme.displayMedium,
               ),
-              const SizedBox(height: 16),
+              if (widget.videoDetail != null) ...[
+                const SizedBox(height: 8),
+                Text(
+                  widget.videoDetail!,
+                  style: textTheme.titleMedium,
+                ),
+                const SizedBox(height: 8),
+              ] else ...[
+                const SizedBox(height: 16),
+              ],
+
 
               Container(
                 decoration: BoxDecoration(
