@@ -207,7 +207,7 @@ class _ShowcasePageState extends State<ShowcasePage> {
                           borderRadius: BorderRadius.circular(8),
                           image: DecorationImage(
                             image: AssetImage(widget.galleryImages[index]),
-                            fit: BoxFit.cover,
+                            fit: BoxFit.contain,
                           ),
                           boxShadow: [
                             BoxShadow(
