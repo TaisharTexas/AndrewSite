@@ -126,6 +126,9 @@ class MainScaffold extends StatelessWidget {
         ),
       );
     }
+
+    ///////////////////
+    // DESKTOP SITE //
     else {
       // Desktop: navbar over gradient content
       const double navbarHeight = 100; // desktop navbar height
