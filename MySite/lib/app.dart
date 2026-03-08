@@ -3,7 +3,6 @@ import 'widgets/navbar.dart';
 import 'widgets/footer.dart';
 import 'pages/home_page.dart';
 import 'pages/page_in_progress.dart';
-import 'pages/sdp_showcase_page.dart';
 import 'pages/ftc_decode_scoring_showcase.dart';
 import 'pages/exam_checkin_showcase.dart';
 import '../responsive_layout.dart';
@@ -78,48 +77,33 @@ class MainScaffold extends StatelessWidget {
             children: [
               SizedBox(height: 40),
               Expanded(child: child), // main content
-              const Footer(),         // footer at bottom of scrollable content
+              // const Footer(),         // footer at bottom of scrollable content
             ],
           ),
         ),
         drawer: Drawer(
+          backgroundColor: AppColors.gradient1,
           child: SafeArea(
-            child: ListView(
-              padding: EdgeInsets.zero,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                DrawerHeader(
-                  decoration: BoxDecoration(color: Theme.of(context).colorScheme.primary),
-                  child: Text(
-                    'Check out me and my site!',
-                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                      color: Theme.of(context).colorScheme.onPrimary,
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 28),
+                  color: Colors.black,
+                  child: const Text(
+                    "Andrew Lee",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 28,
+                      fontFamily: 'Antonio',
                     ),
                   ),
                 ),
-                _DrawerTile(
-                  title: 'Home',
-                  route: '/',
-                  context: context,
-                  currentPage: currentPage,
-                ),
-                _DrawerTile(
-                  title: 'About',
-                  route: '/',
-                  context: context,
-                  currentPage: currentPage,
-                ),
-                _DrawerTile(
-                  title: 'Experience',
-                  route: '/',
-                  context: context,
-                  currentPage: currentPage,
-                ),
-                _DrawerTile(
-                  title: 'Contact',
-                  route: '/',
-                  context: context,
-                  currentPage: currentPage,
-                ),
+                const SizedBox(height: 8),
+                _DrawerTile(title: 'Home', route: '/', context: context, currentPage: currentPage),
+                _DrawerTile(title: 'Exam Checkin Showcase', route: '/exam-checkin-showcase', context: context, currentPage: currentPage),
+                _DrawerTile(title: 'FTC Scoring Showcase', route: '/ftc-decode-scoring-showcase', context: context, currentPage: currentPage),
               ],
             ),
           ),
@@ -192,11 +176,10 @@ class _DrawerTile extends StatelessWidget {
     return ListTile(
       title: Text(
         title,
-        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-          color: isActive
-              ? Theme.of(context).colorScheme.primary
-              : Theme.of(context).colorScheme.onSurface,
+        style: TextStyle(
+          color: isActive ? AppColors.onHoverBackground : Colors.grey,
           fontWeight: isActive ? FontWeight.bold : FontWeight.normal,
+          fontSize: 16,
         ),
       ),
       onTap: () {

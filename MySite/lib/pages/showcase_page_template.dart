@@ -91,10 +91,14 @@ class _ShowcasePageState extends State<ShowcasePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // TITLE
-              Text(
-                widget.title,
-                style: textTheme.displayLarge,
+              FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(widget.title, style: textTheme.displayLarge),
               ),
+              // Text(
+              //   widget.title,
+              //   style: textTheme.displayLarge,
+              // ),
               const SizedBox(height: 16),
 
               // DESCRIPTION
